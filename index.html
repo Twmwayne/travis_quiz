@@ -8,8 +8,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <button type="button" style="margin-top: 150px;" class="btn btn-primary btn-lg btn-block">Start Quiz</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav"> 
+            <a class="nav-link active" href="#">High Scores<span class="sr-only">(current)</span></a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        
+        <a class="btn btn-primary btn-lg" onClick="startQuiz()"  href="#" role="button" id="startButton">Start Quiz</a>
+        <section id="sec1">
+          <br>
+            <label id="quest1">test</label>
+            <br>
+            <a class="btn btn-primary btn-lg" onClick="makeChoice('1')" href="#" role="button" id="button1">choice1</a>
+            <br>
+            <a class="btn btn-primary btn-lg" onClick="makeChoice('2')" href="#" role="button" id="button2">choice2</a>
+            <br>
+            <a class="btn btn-primary btn-lg" onClick="makeChoice('3')" href="#" role="button" id="button3">choice3</a>
+        </section>
+      </div>
   
+    
     
 
 
