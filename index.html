@@ -16,13 +16,16 @@
           <div class="navbar-nav"> 
             <a class="nav-link active" href="#">High Scores<span class="sr-only">(current)</span></a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+            <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+              <p id="demo" style="display: none; flex-direction: row; justify-content: center; align-items: center">Counter:</p>
+            </div>
           </div>
         </div>
       </nav>
     
       <div class="jumbotron">
-        <h1 class="display-4">Easy Quiz</h1>
-        <p class="lead">Answer the following questions and record your high score.</p>
+        <h1 class="display-4", id="title1">Easy Quiz</h1>
+        <p class="lead" id="start_text">Answer the following questions and record your high score.</p>
         <hr class="my-4">
         
         <a class="btn btn-primary btn-lg" onClick="startQuiz()"  href="#" role="button" id="startButton">Start Quiz</a>
@@ -30,11 +33,11 @@
           <br>
             <label id="quest1"></label>
             <br>
-            <a class="btn btn-primary btn-lg" onClick="makeChoice('1')" href="#" role="button" id="button1">choice1</a>
+            <a class="btn btn-primary btn-lg quiz-answers"  href="#" role="button" id="button1">choice1</a>
             <br>
-            <a class="btn btn-primary btn-lg" onClick="makeChoice('2')" href="#" role="button" id="button2">choice2</a>
+            <a class="btn btn-primary btn-lg quiz-answers"  href="#" role="button" id="button2">choice2</a>
             <br>
-            <a class="btn btn-primary btn-lg" onClick="makeChoice('3')" href="#" role="button" id="button3">choice3</a>
+            <a class="btn btn-primary btn-lg quiz-answers"  href="#" role="button" id="button3">choice3</a>
         </section>
       </div>
   
