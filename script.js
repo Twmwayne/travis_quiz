@@ -24,17 +24,17 @@ var questionAnswers = {
     }
 };
 
-var x = setInterval(function() {
-   second_val -= 1;
-   document.getElementById("stopWatch").innerHTML = "Timer" + second_val;
-   if (timer_is_in_use  == 1) {
-       if (second_val < 1) {
-           alert("Time is up. Start over.")
-           timer_is_in_use = 0;
-           document.getElementById("stopWatch").style.display = "none";
-           TimeIsUp();
-       }
-   }
+var x = setInterval(function () {
+    second_val -= 1;
+    document.getElementById("stopWatch").innerHTML = "Timer" + second_val;
+    if (timer_is_in_use == 1) {
+        if (second_val < 1) {
+            alert("Time is up. Start over.")
+            timer_is_in_use = 0;
+            document.getElementById("stopWatch").style.display = "none";
+            TimeIsUp();
+        }
+    }
 
 }, 1000);
 
@@ -69,7 +69,7 @@ function pass_elem(element) {
 
     element.addEventListener('click', function () {
         var correctAnswer;
-        
+
         if (counter == 1) {
             correctAnswer = questionAnswers.question1.correctAnswer;
         }
@@ -91,20 +91,20 @@ function pass_elem(element) {
             document.getElementById("result").style.display = 'block';
         }
 
-        setTimeout(function() {  
+        setTimeout(function () {
             document.getElementById("result").style.display = 'none';
         }, 2000);
-        
+
 
         if (counter == 1) {
             selectingQuestion(questionAnswers.question2);
         }
-        else if (counter == 2){
+        else if (counter == 2) {
             selectingQuestion(questionAnswers.question3);
         }
         else {
             var score = correctCount / 3.0;
-            var sval = Number(score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
+            var sval = Number(score).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 0 });
             document.getElementById("score_result").innerHTML = "Score: " + sval + "; with a time of: " + second_val;
             document.getElementById("container3").style.display = "block";
             document.getElementById("stopWatch").style.display = 'none';
@@ -112,16 +112,16 @@ function pass_elem(element) {
 
             timer_is_in_use = 0;
 
-            if (score > high_score ) {
+            if (score > high_score) {
                 high_score = score;
-                var sval = Number(score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
+                var sval = Number(score).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 0 });
                 document.getElementById("highScores").innerHTML = "High Score: " + sval;
-            }   
+            }
         }
 
         return 0;
     })
-    
+
 }
 
 function TimeIsUp() {
@@ -155,16 +155,16 @@ function quit() {
 }
 
 function save() {
-    var sval = Number(high_score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
+    var sval = Number(high_score).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 0 });
     var displayText = "Name: " + document.getElementById("enterName").value + "; High Score: " + sval;
     timer_is_in_use = 0;
-    var currentdate = new Date(); 
+    var currentdate = new Date();
     var datetime = "; Date: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+        + (currentdate.getMonth() + 1) + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
 
     displayText += datetime;
     user_array.push(displayText);
@@ -172,17 +172,20 @@ function save() {
     TimeIsUp();
 }
 
-function show_scores()
-{
+function show_scores() {
     var i;
-    var counter = user_array.length;
+    var tmp_counter = user_array.length;
     var sval;
     var totalstring = "";
 
-    for (i = 0; i < counter; i++)
-    {
-        sval = user_array[i];
-        totalstring += sval  + "\r\n"
+    if (tmp_counter == 0) {
+        totalstring = "none";
+    }
+    else {
+        for (i = 0; i < tmp_counter; i++) {
+            sval = user_array[i];
+            totalstring += sval + "\r\n"
+        }
     }
     alert(totalstring);
 }
