@@ -2,6 +2,7 @@ var counter = 0;
 var correctCount = 0;
 var second_val = 0;
 var high_score = 0.0;
+var timer_is_in_use = 0;
 
 var questionAnswers = {
 
@@ -24,7 +25,16 @@ var questionAnswers = {
 
 var x = setInterval(function() {
    second_val -= 1;
-   document.getElementById("demo").innerHTML = "Timer" + second_val;
+   document.getElementById("stopWatch").innerHTML = "Timer" + second_val;
+   if (timer_is_in_use  == 1) {
+       if (second_val < 1) {
+           alert("Time is up. Start over.")
+           timer_is_in_use = 0;
+           document.getElementById("stopWatch").style.display = "none";
+           TimeIsUp();
+       }
+   }
+
 }, 1000);
 
 function selectingQuestion(inpQestion) {
@@ -38,13 +48,14 @@ function selectingQuestion(inpQestion) {
 function startQuiz() {
     counter = 0;
     correctCount = 0;
+    timer_is_in_use = 1;
     document.getElementById("sec1").style.display = 'block';
     document.getElementById("startButton").style.display = 'none';
     document.getElementById("title1").style.display = 'none';
     document.getElementById("start_text").style.display = 'none';
     selectingQuestion(questionAnswers.question1);
     second_val = 30;
-    document.getElementById("demo").style.display = "block";
+    document.getElementById("stopWatch").style.display = "block";
 
 }
 var elements = document.getElementsByClassName("quiz-answers");
@@ -53,17 +64,11 @@ Array.from(elements).forEach(pass_elem);
 
 
 
-function delay(delaytime) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(2);
-        }, delaytime);
-    })
-}
-
 function pass_elem(element) {
+
     element.addEventListener('click', function () {
         var correctAnswer;
+        
         if (counter == 1) {
             correctAnswer = questionAnswers.question1.correctAnswer;
         }
@@ -81,6 +86,7 @@ function pass_elem(element) {
         }
         else {
             document.getElementById("result").innerHTML = "Wrong";
+            second_val -= 5;
             document.getElementById("result").style.display = 'block';
         }
 
@@ -98,34 +104,65 @@ function pass_elem(element) {
         else {
             var score = correctCount / 3.0;
             var sval = Number(score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
-            //document.getElementById("result").innerHTML = "Score: " + sval + "; with a time of: " + second_val;
-            //document.getElementById("result").style.display = "block";
-            document.getElementById("sec2").style.display = 'block';
-            document.getElementById("demo").style.display = 'none';
+            document.getElementById("score_result").innerHTML = "Score: " + sval + "; with a time of: " + second_val;
+            document.getElementById("container3").style.display = "block";
+            document.getElementById("stopWatch").style.display = 'none';
+            document.getElementById("container2").style.display = 'none';
 
-            if (score > high_score )
+            timer_is_in_use = 0;
+
+            if (score > high_score ) {
                 high_score = score;
+                var sval = Number(score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
+                document.getElementById("highScores").innerHTML = "High Score: " + sval;
+            }   
         }
+
+        return 0;
     })
     
 }
 
+function TimeIsUp() {
+    document.getElementById("container3").style.display = "none";
+    document.getElementById("stopWatch").style.display = 'none';
+    document.getElementById("container2").style.display = 'block';
+    document.getElementById("container4").style.display = 'none';
+    document.getElementById("sec1").style.display = 'none';
+    document.getElementById("title1").style.display = 'block';
+    document.getElementById("start_text").style.display = 'block';
+    document.getElementById("startButton").style.display = 'block';
+    timer_is_in_use = 0;
+}
+
 function startOver() {
-    document.getElementById("result").style.display = "none";
-    document.getElementById("sec2").style.display = "none";
+    document.getElementById("container3").style.display = "none";
+    document.getElementById("stopWatch").style.display = 'block';
+    document.getElementById("container2").style.display = 'block';
+    timer_is_in_use = 0;
     startQuiz();
 }
 
 
-
-
-
-
-
-function makeChoice(inputVariable) {
-    if (currentQuestion === 1) {
-        return inputVariable === questionAnswers.question1.correctAnswer
-    }
+function quit() {
+    document.getElementById("container3").style.display = "none";
+    document.getElementById("stopWatch").style.display = 'none';
+    document.getElementById("container2").style.display = 'none';
+    document.getElementById("container4").style.display = 'block';
+    timer_is_in_use = 0;
+    startQuiz();
 }
+
+function save() {
+    var displayText = document.getElementById("enterName").value + " High Score " + high_score;
+    timer_is_in_use = 0;
+    TimeIsUp();
+}
+
+
+
+
+
+
 
 
