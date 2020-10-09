@@ -49,3 +49,8 @@
     left: 0;
     display: none;
 }
+
+#quest1 {
+    font-size: 40px;
+    font-weight: bolder;
+}

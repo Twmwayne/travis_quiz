@@ -3,6 +3,7 @@ var correctCount = 0;
 var second_val = 0;
 var high_score = 0.0;
 var timer_is_in_use = 0;
+var user_array = [];
 
 var questionAnswers = {
 
@@ -154,10 +155,39 @@ function quit() {
 }
 
 function save() {
-    var displayText = document.getElementById("enterName").value + " High Score " + high_score;
+    var sval = Number(high_score).toLocaleString(undefined, {style: 'percent', minimumFractionDigits:0});
+    var displayText = "Name: " + document.getElementById("enterName").value + "; High Score: " + sval;
     timer_is_in_use = 0;
+    var currentdate = new Date(); 
+    var datetime = "; Date: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+    displayText += datetime;
+    user_array.push(displayText);
+
     TimeIsUp();
 }
+
+function show_scores()
+{
+    var i;
+    var counter = user_array.length;
+    var sval;
+    var totalstring = "";
+
+    for (i = 0; i < counter; i++)
+    {
+        sval = user_array[i];
+        totalstring += sval  + "\r\n"
+    }
+    alert(totalstring);
+}
+
+
 
 
 
